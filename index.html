@@ -1598,9 +1598,9 @@
       <button class="icon-action-btn" id="sparkleBtn" onclick="triggerEmberBurst()" data-tooltip="Магия искр">
         <i class="fas fa-wand-magic-sparkles"></i>
       </button>
-      <button class="icon-action-btn" onclick="openDiscordModal()" data-tooltip="Связаться">
+      <a class="icon-action-btn" href="https://discord.com/users/andr1gu" target="_blank" data-tooltip="Discord @andr1gu" onclick="openDiscordAccount(event)">
         <i class="fab fa-discord"></i>
-      </button>
+      </a>
     </div>
   </header>
 
@@ -1680,9 +1680,9 @@
         <a class="social-btn gh" href="https://github.com/Merestik" target="_blank" data-label="GitHub @Merestik" onclick="playClickSound()">
           <i class="fa-brands fa-github"></i>
         </a>
-        <button class="social-btn dc" onclick="openDiscordModal()" data-label="Discord @andr1gu">
+        <a class="social-btn dc" href="https://discord.com/users/andr1gu" target="_blank" data-label="Discord @andr1gu" onclick="openDiscordAccount(event)">
           <i class="fa-brands fa-discord"></i>
-        </button>
+        </a>
         <a class="social-btn st" href="https://steamcommunity.com/profiles/76561199518169667/" target="_blank" data-label="Steam Profile" onclick="playClickSound()">
           <i class="fa-brands fa-steam"></i>
         </a>
@@ -2263,35 +2263,6 @@
     <span id="toastMsg">Скопировано в буфер обмена!</span>
   </div>
 
-  <!-- Discord Modal -->
-  <div class="modal-backdrop" id="discordModal" onclick="handleBackdropClick(event)">
-    <div class="modal-window">
-      <button class="modal-close-btn" onclick="closeDiscordModal()"><i class="fas fa-xmark"></i></button>
-      
-      <div class="modal-avatar">
-        <!-- SVG Avatar -->
-        <svg viewBox="0 0 100 100" fill="none">
-          <rect width="100" height="100" fill="#2d0a16"/>
-          <circle cx="50" cy="40" r="22" fill="#ff2a5f"/>
-          <path d="M50 20C40 20 32 28 32 38C32 46 36 53 43 56C30 60 22 72 20 88H80C78 72 70 60 57 56C64 53 68 46 68 38C68 28 60 20 50 20Z" fill="#fff"/>
-        </svg>
-      </div>
-
-      <h3 class="modal-title">Связаться в Discord</h3>
-      <div class="modal-tag">@merest</div>
-
-      <div class="copy-action-box">
-        <span class="copy-code-text">merest</span>
-        <button class="modal-copy-btn" onclick="copyDiscordTag()">
-          <i class="far fa-copy"></i> Скопировать
-        </button>
-      </div>
-
-      <p style="font-size: 13px; color: var(--text-dim); line-height: 1.5;">
-        Добавляйтесь в друзья для обсуждения проектов, сотрудничества или общения!
-      </p>
-    </div>
-  </div>
 
   <!-- ==========================================================================
        INTERACTIVE JAVASCRIPT ENGINE
@@ -2927,21 +2898,10 @@
       });
     }
 
-    function copyDiscordTag() {
-      playClickSound();
-      navigator.clipboard.writeText('andr1gu').then(() => {
-        showToast("Discord тег @andr1gu скопирован! ✨");
-        triggerEmberBurst();
-        closeDiscordModal();
-      }).catch(() => {
-        showToast("Discord: andr1gu");
-      });
-    }
-
     function copyEmail() {
       playClickSound();
       navigator.clipboard.writeText('contact@merest.dev').then(() => {
-        showToast("Почта contact@merest.dev скопирована!");
+        showToast("Почта contact@merest.dev скопирована! ✉️");
         triggerEmberBurst();
       }).catch(() => {
         showToast("Почта: contact@merest.dev");
@@ -2949,22 +2909,16 @@
     }
 
     /* ==========================================================================
-       9. DISCORD MODAL LOGIC
+       9. DISCORD PROFILE ACTION
        ========================================================================== */
-    function openDiscordModal() {
+    function openDiscordAccount(e) {
       playClickSound();
-      document.getElementById('discordModal').classList.add('open');
-    }
-
-    function closeDiscordModal() {
-      playClickSound();
-      document.getElementById('discordModal').classList.remove('open');
-    }
-
-    function handleBackdropClick(e) {
-      if (e.target.id === 'discordModal') {
-        closeDiscordModal();
-      }
+      navigator.clipboard.writeText('andr1gu').then(() => {
+        showToast("Тег @andr1gu скопирован! Переход в профиль Discord... 🚀");
+      }).catch(() => {
+        showToast("Discord: @andr1gu");
+      });
+      triggerEmberBurst();
     }
 
     /* ==========================================================================
